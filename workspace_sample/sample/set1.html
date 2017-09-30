@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>預測模型</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/angular.min.js" rel="stylesheet">
+    <script>
+        function show() {
+            var x = document.getElementById("list").value;
+            $(".dt").fadeOut(0);
+            $(".ann").fadeOut(0);
+            $(".rfr").fadeOut(0);
+            $(".gbr").fadeOut(0);
+        
+            if(x=="dt") {
+                $(".dt").fadeIn(300);
+            }
+            if(x=="ann") {
+                $(".ann").fadeIn(300); 
+            }
+            if(x=="rfr") {
+                $(".rfr").fadeIn(300);     
+            }             
+            if(x=="gbr") {
+                $(".gbr").fadeIn(300);        
+            }                              
+        }
+    </script>
+
+</head>
+
+
+<body ng-app="">
+
+    <div id="wrapper">
+        <div class="gray-bg">
+            <div class="row border-bottom">
+            <!--頁首-->
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="Joey.php"><i class="fa fa-bars"></i> </a>
+                <form role="search" class="navbar-form-custom" action="search_results.html">
+                    <div class="form-group">
+                        <input type="text" placeholder="FundIT" class="form-control" name="top-search" id="top-search">
+                    </div>
+                </form>
+            </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message"></span>
+                    </li>
+                    <li class="dropdown">
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <small class="pull-right">46h ago</small>
+                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="img/a4.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right text-navy">5h ago</small>
+                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="img/profile.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right">23h ago</small>
+                                        <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                        <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a href="mailbox.html">
+                                        <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="Foresee_Login.html">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+            </div>
+        
+            <!--第一行-->
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>股票指標設定</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">首頁</a>
+                        </li>
+                        <li>
+                            <a href="">股票預測</a>
+                        </li>
+                        <li class="active">
+                            <strong>預測模型</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!--預測模型-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                                            <form method="get" action="https://crawler-zhenweili.c9users.io/user/paul/query/">  
+
+                            <div class="ibox-title">                         
+                                <h5>設定預測模型</h5>
+                            </div>
+                            <!--設定-->
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <!--股票代號-->
+                                    <div class="col-sm-2 m-b-xs">
+                                    <div class="input-group"><input type="text" placeholder="股票代號" ng-model="codeNumber" class="input-sm form-control" name="code"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                                    </div>
+                                    <!--選擇演算法-->
+                                    <div class="col-sm-4 m-b-xs">
+                                        <div class="input-group">
+                                            <select id="list" class="input-sm form-control dropdown-toggle" ng-model="modelNumber" data-toggle="dropdown" href="#" onchange="show()" name="model">
+                                                <option value="0">演算法選擇</option>
+                                                <option value="dt">SVR</option>
+                                                <option value="ann">ANN</option>
+                                                <option value="rnn">RNN</option>
+                                                <option value="rfr">Random Forest Regressor</option>
+                                                <option value="gbr">gradient boosting regressor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 id="code"></h4>
+                        <!--SVR-->
+                                <h3 class="dt" style="color: #18A689;padding-top:10px;padding-bottom:10px;display:none;">SVR模型函數設定（單位：log2）</h3>
+                                <!--ε損失函數-->  
+                                <div class="row dt" style="display:none;" >
+                                    <div class="col-sm-1 m-b-xs" style="top:4px">ε損失函數</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="下限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="上限" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="step" class="input-sm form-control">                      
+                                    </div>                                                        
+                                </div>
+                                <!--gamma-->
+                                <div class="row dt" style="display:none;">
+                                    <div class="col-sm-1 m-b-xs" style="top:6px">gamma函數</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="下限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="上限" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="step" class="input-sm form-control">                      
+                                    </div>                                                        
+                                </div>
+                                <!--C懲罰函數-->
+                                <div class="row dt" style="display:none;">
+                                    <div class="col-sm-1 m-b-xs" style="top:7px">C懲罰函數</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="下限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="上限" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="step" class="input-sm form-control">                      
+                                    </div>                                                        
+                                </div>                            
+                        <!--ANN-->
+                                <h3 class="ann" style="color: #18A689;padding-top:10px;padding-bottom:10px;display:none;">ANN模型函數設定（單位：log2）</h3>
+                                <!--hidden_layer-->  
+                                <div class="row ann" style="display:none;" >
+                                    <div class="col-sm-2 m-b-xs" style="top:4px">hidden_layer</div>
+                                    <div class="col-sm-2 m-b-xs">                
+                                        <input type="text" placeholder="層數" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-2 m-b-xs">                
+                                        <input type="text" placeholder="大小" class="input-sm form-control">                      
+                                    </div>                                                             
+                                </div>
+                                <!--solver-->
+                                <div class="row ann" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:7px">solver</div>
+                                    <div class="col-sm-2 m-b-xs">                
+                                        <input type="text" placeholder="lbfgs" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="sgd" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="adam" class="input-sm form-control">                      
+                                    </div>                                                        
+                                </div> 
+                                <!--activation-->
+                                <div class="row ann" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:6px">activation</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="identity" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="logistic" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="tanh" class="input-sm form-control">                      
+                                    </div>     
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="relu" class="input-sm form-control">                      
+                                    </div>                                                     
+                                </div>
+
+                                <!--learning_rate-->
+                                <div class="row ann" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:7px">learning rate</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="constant" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="invscaling" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="adaptive" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="max_iter" class="input-sm form-control">                      
+                                    </div>                                                           
+                                </div>
+                        <!--RFR-->
+                                <h3 class="rfr" style="color: #18A689;padding-top:10px;padding-bottom:10px;display:none;">Random Forest Regressor模型函數設定（單位：log2）</h3>
+                                <!--1-->  
+                                <div class="row rfr" style="display:none;" >
+                                    <div class="col-sm-2 m-b-xs" style="top:4px">max features</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="上限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="下限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="step" class="input-sm form-control">                      
+                                    </div>                           
+                                </div>
+                                <!--2-->
+                                <div class="row rfr" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:6px">N estimators</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="上限" class="input-sm form-control">                      
+                                    </div>                 
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="下限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="step" class="input-sm form-control">                      
+                                    </div>                                            
+                                </div>
+                                <!--3-->
+                                <div class="row rfr" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:7px">min sample leaf</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="上限" class="input-sm form-control">                      
+                                    </div>        
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="下限" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="step" class="input-sm form-control">                      
+                                    </div>                                                                               
+                                </div>                            
+                        <!--GBR-->
+                                <h3 class="gbr" style="color: #18A689;padding-top:10px;padding-bottom:10px;display:none;">ANN模型函數設定（單位：log2）</h3>
+                                <!--n_estimators-->  
+                                <div class="row gbr" style="display:none;" >
+                                    <div class="col-sm-2 m-b-xs" style="top:4px">N estimators</div>
+                                    <div class="col-sm-2 m-b-xs">                
+                                        <input type="text" placeholder="回歸數量" class="input-sm form-control">                      
+                                    </div>                                                      
+                                </div>
+                                <!--max_depth-->
+                                <div class="row gbr" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:6px">max depth</div>
+                                    <div class="col-sm-2 m-b-xs">                
+                                        <input type="text" placeholder="樹的深度" class="input-sm form-control">                      
+                                    </div>                                                       
+                                </div>
+                                <!--learning_rate-->
+                                <div class="row gbr" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:6px">learning rate</div>
+                                    <div class="col-sm-2 m-b-xs">                
+                                        <input type="text" placeholder="學習速率" class="input-sm form-control">                      
+                                    </div>                                                       
+                                </div> 
+                                <!--LOSS-->
+                                <div class="row gbr" style="display:none;">
+                                    <div class="col-sm-2 m-b-xs" style="top:7px">loss損失函數</div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="ls" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="lad" class="input-sm form-control">                      
+                                    </div>       
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="huber" class="input-sm form-control">                      
+                                    </div>
+                                    <div class="col-sm-1 m-b-xs">                
+                                        <input type="text" placeholder="quantile" class="input-sm form-control">                      
+                                    </div>                                                           
+                                </div>                           
+                            </div>
+                    <!--ibox-->
+
+                    
+                    <!--選擇指標-->
+                        <!--<input type="hidden" value="{{ codeNumber }}" class="input-sm form-control" name="code">-->
+                        <!--<input type="hidden" value="{{ modelNumber }}" class="input-sm form-control" name="model">-->
+                        <div class="table-responsive" style="background:#fff;">
+                        <table class="table table-striped" style="margin:12px;">
+                            <thead>
+                            <tr>
+                                <th>Select </th>
+                                <th>股票指標 </th>
+                                <th>Description </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="macd" value="macd"></td>
+                                <td>Macd</td>
+                                <td>MACD.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="macds" value="macds"></td>
+                                <td>Macds</td>
+                                <td>MACD signal line.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="macdh" value="macdh"></td>
+                                <td>Macdh</td>
+                                <td>MACD histogram.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="kdjk" value="kdjk"></td>
+                                <td>Kdjk</td>
+                                <td>KDJ-k.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="kdjj" value="kdjj"></td>
+                                <td>Kdjj</td>
+                                <td>KDJ-j.<td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="kdjd" value="kdjd"></td>
+                                <td>Kdjd</td>
+                                <td>KDJ-d.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="close_10.0_le_5_c" value="close_10.0_le_5_c"></td>
+                                <td>close prcies</td>
+                                <td>close price less than 10.0 in 5 days count.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="cr-ma2_xu_cr-ma1_20_c" value="cr-ma2_xu_cr-ma1_20_c"></td>
+                                <td>CR MA2</td>
+                                <td>CR MA2 cross up CR MA1 in 20 days count.</td>
+                            </tr>                           
+                             <tr>
+                                <td><input type="checkbox" class="i-checks" name="rsi_5" value="rsi_5"></td>
+                                <td>rsi 5 days</td>
+                                <td>5 days RSI.</td>
+                            </tr>
+                             <tr>
+                                <td><input type="checkbox" class="i-checks" name="rsi_10" value="rsi_10"></td>
+                                <td>rsi 10 days</td>
+                                <td>10 days RSI.</td>                    
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="wr_10" value="wr_10"></td>
+                                <td>WR 10 days</td>
+                                <td>10 days WR.</td>                    
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="wr_6" value="wr_6"></td>
+                                <td>WR 6 days</td>
+                                <td>6 days WR.</td>                    
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="cci" value="cci"></td>
+                                <td>CCI</td>
+                                <td>default to 14 days.</td>                                
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="cci_20" value="cci_20"></td>
+                                <td>CCI 20days</td>
+                                <td>20 days CCI.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="dma" value="dma"></td>
+                                <td>DMA</td>
+                                <td>difference of 10 and 50 moving average. </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="pdi" value="pdi"></td>
+                                <td>PDI</td>
+                                <td>DMI + DI,default to 14 days</td>                                
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="mdi" value="mdi"></td>
+                                <td>MDI</td>
+                                <td>DMI - DI,default to 14 days</td>                                                                
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="dx" value="dx"></td>
+                                <td>DX</td>
+                                <td>default to 14 days of + DI and -DI</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="adx" value="adx"></td>
+                                <td>ADX</td>
+                                <td>6 days SMA of DX.</td>                                
+                            </tr>   
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="trix" value="trix"></td>
+                                <td>TRIX</td>
+                                <td>default to 12 days.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="trix_9_sma" value="trix_9_sma"></td>
+                                <td>TRIX SMA</td>
+                                <td>MATRIX is the simple moving average of TRIX.</td>                                
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="vr" value="vr"></td>
+                                <td>VR</td>
+                                <td>default to 26 days.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="vr_6_sma" value="vr_6_sma"></td>
+                                <td>VR 6 SMA</td>
+                                <td>MAVR is th e simple moving average of VR.</td>
+                            </tr>                                                                                                                                                                                                                                                                        
+                            </tbody>
+                        </table>
+                        <div class="" style="margin:25px 12px 12px 12px;">
+                            <input type="submit" value="送出模型" style="padding:10px 15px 10px 15px;border-radius:4px;background-color: #18A689;color:#fff;border:0px;" ></input>
+                            <input type="reset" value="重置模型" style="margin-left:15px;padding:10px 15px 10px 15px;border-radius:4px;background-color: #777;color:#fff;border:0px;" ></input>
+                        </div>
+                    </div> <!--table-res-->
+                </form>
+            </div> <!--col 12-->
+        </div> <!--row-->
+    </div> <!--grap-->
+</div>  <!--wrap-->
+
+
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peity -->
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Peity -->
+    <script src="js/demo/peity-demo.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+
+    
+</body>
+
+</html>

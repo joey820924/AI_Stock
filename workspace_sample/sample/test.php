@@ -1,0 +1,1 @@
+<div><button><?php echo $_POST["MyName"];?></button></div>

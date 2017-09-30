@@ -1,0 +1,35 @@
+<form action="Joey.php" method="post">
+
+Please select?<br />
+<input type="checkbox" name="formDoor[]" value="macd" />macd<br />
+<input type="checkbox" name="formDoor[]" value="macds" />macds<br />
+<input type="checkbox" name="formDoor[]" value="macdh" />macdh<br />
+<input type="checkbox" name="formDoor[]" value="kdjj" />kdjj<br />
+<input type="checkbox" name="formDoor[]" value="kdjk" />kdjk<br />
+<input type="checkbox" name="formDoor[]" value="kdjd" />kdjd<br />
+<input type="checkbox" name="formDoor[]" value="rsi_5" />rsi_5<br />
+<input type="checkbox" name="formDoor[]" value="rsi_10" />rsi_10
+
+<input type="submit" name="formSubmit" value="Submit" />
+
+</form>
+
+<?php
+  $aDoor = $_POST['formDoor'];
+  if(empty($aDoor)) 
+  {
+    echo("You didn't select any buildings.");
+  } 
+  else
+  {
+    $N = count($aDoor);
+
+    $url = "https://test-joey820924.c9users.io/user/joey/cal/?code=1101";
+    for($i=0; $i < $N; $i++)
+    {
+      $tmp = "&".$aDoor[$i]."=".$aDoor[$i];
+      $url+=$tmp;
+    }
+    window.location.href = "https://test-joey820924.c9users.io/user/joey/cal/?code=1101&macd=macd&kdjj=kdjj&macds=macds&macdh=macdh&kdjk=kdjk&kdjd=kdjd&rsi_5=rsi_5&rsi_10=rsi_10";
+  }
+?>
